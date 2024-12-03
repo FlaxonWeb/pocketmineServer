@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # إعطاء صلاحيات التنفيذ للسكريبت
+      - name: Give execute permission to start.sh
+        run: chmod +x ./start.sh
+
+      # تشغيل السكربت
+      - name: Run start.sh script
+        run: ./start.sh
